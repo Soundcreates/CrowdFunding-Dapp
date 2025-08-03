@@ -7,6 +7,7 @@ pragma solidity ^0.8.0;
 contract Crowdfunding {
     struct Campaign{
         address creator;
+        string _name;
         uint goal;
         uint pledged;
         uint startAt;
@@ -21,7 +22,7 @@ contract Crowdfunding {
     mapping(uint => mapping( address => uint)) public pledgedAmount;
 
     //events
-    event launched(uint id, address creator, uint goal, uint startAt, uint endAt, string message);
+    event launched(uint id, address creator, string name, uint goal, uint startAt, uint endAt, string message);
     event pledged(uint id, address pledger, uint pledgedAmount, string message);
     event unpledged(uint id, address pledger, string message);
     event claimed(uint id, address claimer, uint amountToSendBack, string message);
@@ -29,14 +30,15 @@ contract Crowdfunding {
 
 
 
-    function launch(uint _goal, uint _duration) public {
+    function launch(uint _goal, uint _duration, string memory name) public {
         require(_duration <= 90 days, "Too long of a campaign");
         count++;
         campaigns[count].creator = msg.sender;
+        campaigns[count]._name = name;
         campaigns[count].goal = _goal;
         campaigns[count].startAt = block.timestamp;
         campaigns[count].endAt = block.timestamp + _duration;
-        emit launched(count, msg.sender, _goal, campaigns[count].startAt, campaigns[count].endAt, "Campaign has been launched successfully");
+        emit launched(count, msg.sender, name, _goal, campaigns[count].startAt, campaigns[count].endAt, "Campaign has been launched successfully");
 
 
     }

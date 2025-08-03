@@ -1,4 +1,4 @@
-[
+ [
     {
       "anonymous": false,
       "inputs": [
@@ -44,6 +44,12 @@
           "internalType": "address",
           "name": "creator",
           "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
         },
         {
           "indexed": false,
@@ -176,6 +182,11 @@
           "type": "address"
         },
         {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
           "internalType": "uint256",
           "name": "goal",
           "type": "uint256"
@@ -285,6 +296,11 @@
           "internalType": "uint256",
           "name": "_duration",
           "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
         }
       ],
       "name": "launch",
